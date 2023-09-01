@@ -43,6 +43,21 @@ const isAuthenticated = (req, res, next) => {
   }
 };
 
+// Calculate Balance
+const calculateUserBalance = (userId) => {
+  let currentBalance = 0;
+  transactions.forEach((transaction) => {
+    if (transaction.senderId === userId) {
+      currentBalance -= transaction.amount;
+    }
+    if (transaction.recipientId === userId) {
+      currentBalance += transaction.amount;
+    }
+  });
+  return currentBalance;
+};
+
+
 
 // Login
 app.post("/api/login", (req, res) => {
@@ -117,33 +132,29 @@ app.get("/api/creditByCountry", (req, res) => {
   res.json(creditByCountry);
 });
 
+// Get the balance of all users
+app.get("/api/checkBalance", (req, res) => {
+  const userBalances = users.map((user) => {
+    const currentBalance = calculateUserBalance(user.id);
+    return { ...user, currentBalance };
+  });
+
+  res.json(userBalances);
+});
+
 // Get users who have exceeded their credit limit
 app.get("/api/usersExceededCreditLimit", (req, res) => {
   const usersExceededCreditLimit = [];
 
-  // Calculate the current balance for each user based on transactions
   users.forEach((user) => {
-    let currentBalance = 0;
-    transactions.forEach((transaction) => {
-      if (transaction.senderId === user.id) {
-        currentBalance -= transaction.amount;
-      }
-      if (transaction.recipientId === user.id) {
-        currentBalance += transaction.amount;
-      }
-    });
+    const currentBalance = calculateUserBalance(user.id);
 
-    // Check if the user has exceeded their credit limit
     if (currentBalance > user.limit) {
       usersExceededCreditLimit.push({ ...user, currentBalance });
     }
   });
 
-  if (usersExceededCreditLimit.length > 0) {
-    res.json(usersExceededCreditLimit);
-  } else {
-    res.status(404).json({ message: "No users have exceeded their credit limit" });
-  }
+  res.json(usersExceededCreditLimit);
 });
 
 // Transfer Balance (Protected Route)
