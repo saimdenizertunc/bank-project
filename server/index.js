@@ -27,7 +27,20 @@ fs.readFile("user-transaction.json", (err, data) => {
 
 // Get All Users
 app.get("/api/users", (req, res) => {
-  res.json(users);
+  const page = parseInt(req.query.page) || 1; // Default to page 1
+  const pageSize = parseInt(req.query.pageSize) || 10; // Default to 10 items per page
+
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = page * pageSize;
+
+  const paginatedUsers = users.slice(startIndex, endIndex);
+
+  res.json({
+    page,
+    pageSize,
+    total: users.length,
+    data: paginatedUsers,
+  });
 });
 
 // Get a single user by ID
