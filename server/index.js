@@ -85,6 +85,35 @@ app.get("/api/creditByCountry", (req, res) => {
   res.json(creditByCountry);
 });
 
+// Get users who have exceeded their credit limit
+app.get("/api/usersExceededCreditLimit", (req, res) => {
+  const usersExceededCreditLimit = [];
+
+  // Calculate the current balance for each user based on transactions
+  users.forEach((user) => {
+    let currentBalance = 0;
+    transactions.forEach((transaction) => {
+      if (transaction.senderId === user.id) {
+        currentBalance -= transaction.amount;
+      }
+      if (transaction.recipientId === user.id) {
+        currentBalance += transaction.amount;
+      }
+    });
+
+    // Check if the user has exceeded their credit limit
+    if (currentBalance > user.limit) {
+      usersExceededCreditLimit.push({ ...user, currentBalance });
+    }
+  });
+
+  if (usersExceededCreditLimit.length > 0) {
+    res.json(usersExceededCreditLimit);
+  } else {
+    res.status(404).json({ message: "No users have exceeded their credit limit" });
+  }
+});
+
 // Login
 app.post("/api/login", (req, res) => {
   const email = req.body.email;
