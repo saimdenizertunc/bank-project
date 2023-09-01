@@ -67,6 +67,24 @@ app.get("/api/findUsersByName", (req, res) => {
   }
 });
 
+// Get the sum of credit limits grouped by country
+app.get("/api/creditByCountry", (req, res) => {
+  const creditByCountry = {};
+
+  users.forEach((user) => {
+    const country = user.country;
+    const creditLimit = user.limit; 
+
+    if (creditByCountry[country]) {
+      creditByCountry[country] += creditLimit;
+    } else {
+      creditByCountry[country] = creditLimit;
+    }
+  });
+
+  res.json(creditByCountry);
+});
+
 // Login
 app.post("/api/login", (req, res) => {
   const email = req.body.email;
