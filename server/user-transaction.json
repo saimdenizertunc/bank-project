@@ -1,0 +1,282 @@
+[
+  {
+    "id": 1,
+    "senderId": 1,
+    "recipientId": 2,
+    "amount": 1200,
+    "date": "01/08/2023"
+  },
+  {
+    "id": 2,
+    "senderId": 2,
+    "recipientId": 3,
+    "amount": 800,
+    "date": "02/08/2023"
+  },
+  {
+    "id": 3,
+    "senderId": 3,
+    "recipientId": 4,
+    "amount": 400,
+    "date": "03/08/2023"
+  },
+  {
+    "id": 4,
+    "senderId": 4,
+    "recipientId": 5,
+    "amount": 200,
+    "date": "04/08/2023"
+  },
+  {
+    "id": 5,
+    "senderId": 5,
+    "recipientId": 6,
+    "amount": 500,
+    "date": "05/08/2023"
+  },
+  {
+    "id": 6,
+    "senderId": 6,
+    "recipientId": 7,
+    "amount": 200,
+    "date": "06/08/2023"
+  },
+  {
+    "id": 7,
+    "senderId": 7,
+    "recipientId": 8,
+    "amount": 5000,
+    "date": "07/08/2023"
+  },
+  {
+    "id": 8,
+    "senderId": 8,
+    "recipientId": 9,
+    "amount": 300,
+    "date": "08/08/2023"
+  },
+  {
+    "id": 9,
+    "senderId": 9,
+    "recipientId": 10,
+    "amount": 200,
+    "date": "09/08/2023"
+  },
+  {
+    "id": 10,
+    "senderId": 10,
+    "recipientId": 11,
+    "amount": 4000,
+    "date": "10/08/2023"
+  },
+  {
+    "id": 11,
+    "senderId": 11,
+    "recipientId": 12,
+    "amount": 6500,
+    "date": "11/08/2023"
+  },
+  {
+    "id": 12,
+    "senderId": 12,
+    "recipientId": 13,
+    "amount": 500,
+    "date": "12/08/2023"
+  },
+  {
+    "id": 13,
+    "senderId": 13,
+    "recipientId": 14,
+    "amount": 700,
+    "date": "13/08/2023"
+  },
+  {
+    "id": 14,
+    "senderId": 14,
+    "recipientId": 15,
+    "amount": 200,
+    "date": "14/08/2023"
+  },
+  {
+    "id": 15,
+    "senderId": 15,
+    "recipientId": 1,
+    "amount": 8000,
+    "date": "15/08/2023"
+  },
+  {
+    "id": 16,
+    "senderId": 1,
+    "recipientId": 3,
+    "amount": 300,
+    "date": "16/08/2023"
+  },
+  {
+    "id": 17,
+    "senderId": 2,
+    "recipientId": 4,
+    "amount": 100,
+    "date": "17/08/2023"
+  },
+  {
+    "id": 18,
+    "senderId": 3,
+    "recipientId": 5,
+    "amount": 500,
+    "date": "18/08/2023"
+  },
+  {
+    "id": 19,
+    "senderId": 4,
+    "recipientId": 6,
+    "amount": 100,
+    "date": "19/08/2023"
+  },
+  {
+    "id": 20,
+    "senderId": 5,
+    "recipientId": 7,
+    "amount": 100,
+    "date": "20/08/2023"
+  },
+  {
+    "id": 21,
+    "senderId": 6,
+    "recipientId": 8,
+    "amount": 62,
+    "date": "21/08/2023"
+  },
+  {
+    "id": 22,
+    "senderId": 7,
+    "recipientId": 9,
+    "amount": 31,
+    "date": "22/08/2023"
+  },
+  {
+    "id": 23,
+    "senderId": 8,
+    "recipientId": 10,
+    "amount": 41,
+    "date": "23/08/2023"
+  },
+  {
+    "id": 24,
+    "senderId": 9,
+    "recipientId": 11,
+    "amount": 49,
+    "date": "24/08/2023"
+  },
+  {
+    "id": 25,
+    "senderId": 10,
+    "recipientId": 12,
+    "amount": 36,
+    "date": "25/08/2023"
+  },
+  {
+    "id": 26,
+    "senderId": 11,
+    "recipientId": 13,
+    "amount": 52,
+    "date": "26/08/2023"
+  },
+  {
+    "id": 27,
+    "senderId": 12,
+    "recipientId": 14,
+    "amount": 44,
+    "date": "27/08/2023"
+  },
+  {
+    "id": 28,
+    "senderId": 13,
+    "recipientId": 15,
+    "amount": 21,
+    "date": "28/08/2023"
+  },
+  {
+    "id": 29,
+    "senderId": 14,
+    "recipientId": 1,
+    "amount": 47,
+    "date": "29/08/2023"
+  },
+  {
+    "id": 30,
+    "senderId": 15,
+    "recipientId": 2,
+    "amount": 36,
+    "date": "30/08/2023"
+  },
+  {
+    "id": 31,
+    "senderId": 1,
+    "recipientId": 4,
+    "amount": 43,
+    "date": "31/08/2023"
+  },
+  {
+    "id": 32,
+    "senderId": 2,
+    "recipientId": 5,
+    "amount": 50,
+    "date": "31/08/2023"
+  },
+  {
+    "id": 33,
+    "senderId": 3,
+    "recipientId": 6,
+    "amount": 50,
+    "date": "31/08/2023"
+  },
+  {
+    "id": 34,
+    "senderId": 4,
+    "recipientId": 7,
+    "amount": 30,
+    "date": "31/08/2023"
+  },
+  {
+    "id": 35,
+    "senderId": 5,
+    "recipientId": 8,
+    "amount": 23,
+    "date": "31/08/2023"
+  },
+  {
+    "id": 36,
+    "senderId": 6,
+    "recipientId": 9,
+    "amount": 15,
+    "date": "31/08/2023"
+  },
+  {
+    "id": 37,
+    "senderId": 7,
+    "recipientId": 10,
+    "amount": 30,
+    "date": "31/08/2023"
+  },
+  {
+    "id": 38,
+    "senderId": 8,
+    "recipientId": 11,
+    "amount": 45,
+    "date": "31/08/2023"
+  },
+  {
+    "id": 39,
+    "senderId": 9,
+    "recipientId": 12,
+    "amount": 50,
+    "date": "31/08/2023"
+  },
+  {
+    "id": 40,
+    "senderId": 10,
+    "recipientId": 13,
+    "amount": 40,
+    "date": "31/08/2023"
+  }
+]
