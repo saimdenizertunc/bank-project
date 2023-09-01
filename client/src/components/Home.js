@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import './Home.css';
 import { MDBListGroup, MDBListGroupItem } from "mdb-react-ui-kit";
 
 function Home() {
@@ -42,22 +43,24 @@ function Home() {
   };
 
   return (
-    <div style={{ margin: "50px" }}>
-      <h2>User List</h2>
-      <input
-        type="text"
-        placeholder="Search by name..."
-        value={searchTerm}
-        onChange={handleSearch}
-      />
-      <MDBListGroup>
-        {Array.isArray(users) && users.map((user) => (
-          <MDBListGroupItem key={user.id}>
-            <strong>{user.name}</strong> - {user.email} - {user.country}
-          </MDBListGroupItem>
-        ))}
-      </MDBListGroup>
+    <div className="home-container">
+    <h2>User List</h2>
+    <input
+      type="text"
+      className="search-input"
+      placeholder="Search by name..."
+      value={searchTerm}
+      onChange={handleSearch}
+    />
+    <div className="user-list">
+      {Array.isArray(users) && users.map((user) => (
+        <div className="user-item" key={user.id}>
+          <strong>{user.name}</strong> - {user.email} - {user.country} - Limit: {user.limit}
+        </div>
+      ))}
     </div>
+  </div>
+    
   );
 }
 
