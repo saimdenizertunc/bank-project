@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 5000;
+const jwt = require('jsonwebtoken');
 
 app.use(cors());
 app.use(express.json());
@@ -22,6 +23,41 @@ fs.readFile("user.json", (err, data) => {
 fs.readFile("user-transaction.json", (err, data) => {
   if (err) throw err;
   transactions = JSON.parse(data);
+});
+
+// Middleware to check if user is authenticated
+const isAuthenticated = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.split(' ')[1]; // Bearer <token>
+
+  console.log("Received token:", token);
+  
+  try {
+    const decoded = jwt.verify(token, 'denizertunc');
+    console.log("Decoded token:", decoded);
+    req.user = users.find(u => u.id === decoded.id);
+    next();
+  } catch (error) {
+    console.log("Token verification failed:", error);
+    res.status(401).json({ message: "Unauthorized" });
+  }
+};
+
+
+// Login
+app.post("/api/login", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  const user = users.find((u) => u.email === email && u.password === password);
+
+  if (user) {
+    const token = jwt.sign({ id: user.id }, 'denizertunc', { expiresIn: '1h' });
+    console.log(token)
+    res.json({ success: true, user: user, token });
+  } else {
+    res.status(401).json({ success: false, message: "Yanlış email veya şifre" });
+  }
 });
 
 
@@ -114,21 +150,55 @@ app.get("/api/usersExceededCreditLimit", (req, res) => {
   }
 });
 
-// Login
-app.post("/api/login", (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
+// Transfer Balance (Protected Route)
+app.post("/api/transferBalance", isAuthenticated, (req, res) => {
+  const { recipientId, amount } = req.body;
 
-  const user = users.find((u) => u.email === email && u.password === password);
-
-  if (user) {
-    res.json({ success: true, user: user });
-  } else {
-    res
-      .status(401)
-      .json({ success: false, message: "Yanlış email veya şifre" });
+  if (!recipientId || !amount) {
+    return res.status(400).json({ message: "Recipient ID and amount are required." });
   }
+
+  const sender = req.user;
+  const recipient = users.find((u) => u.id === parseInt(recipientId));
+
+  if (!recipient) {
+    return res.status(404).json({ message: "Recipient not found." });
+  }
+
+  // Calculate sender's current balance
+  let senderCurrentBalance = 0;
+  transactions.forEach((transaction) => {
+    if (transaction.senderId === sender.id) {
+      senderCurrentBalance -= transaction.amount;
+    }
+    if (transaction.recipientId === sender.id) {
+      senderCurrentBalance += transaction.amount;
+    }
+  });
+
+  if (senderCurrentBalance - amount < -sender.limit) {
+    return res.status(403).json({ message: "Transaction exceeds credit limit." });
+  }
+
+  // Perform the transfer
+  const newTransaction = {
+    senderId: sender.id,
+    recipientId: recipient.id,
+    amount,
+  };
+  
+
+  transactions.push(newTransaction);
+
+  // Write transactions back to 'user-transaction.json'
+  fs.writeFileSync('user-transaction.json', JSON.stringify(transactions));
+
+  return res.status(200).json({ message: "Transfer successful.", newTransaction });
 });
+
+
+
+
 // Logout
 app.post("/api/logout", (req, res) => {
   const userId = req.body.userId;
