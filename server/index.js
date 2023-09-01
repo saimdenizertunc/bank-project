@@ -55,6 +55,18 @@ app.get("/api/users/:id", (req, res) => {
   }
 });
 
+// Find users by name
+app.get("/api/findUsersByName", (req, res) => {
+  const nameQuery = req.query.name || ""; // Default to an empty string if no query is provided
+  const filteredUsers = users.filter((user) => user.name.toLowerCase().includes(nameQuery.toLowerCase()));
+
+  if (filteredUsers.length > 0) {
+    res.json(filteredUsers);
+  } else {
+    res.status(404).json({ message: "No users found" });
+  }
+});
+
 // Login
 app.post("/api/login", (req, res) => {
   const email = req.body.email;
