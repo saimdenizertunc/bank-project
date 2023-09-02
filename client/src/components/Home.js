@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './Home.css';
 import { MDBListGroup, MDBListGroupItem } from "mdb-react-ui-kit";
+import Header from "./Header";
 
 function Home() {
   const [users, setUsers] = useState([]);
@@ -43,7 +44,10 @@ function Home() {
   };
 
   return (
+    <>
+    <Header />
     <div className="home-container">
+      
     <h2>User List</h2>
     <input
       type="text"
@@ -60,6 +64,7 @@ function Home() {
       ))}
     </div>
   </div>
+  </>
     
   );
 }

@@ -40,7 +40,7 @@ function Login() {
   };
 
   if (redirectToHome) {
-    console.log("Redirecting to home");
+    
     return <Navigate to="/" />;
   }
 

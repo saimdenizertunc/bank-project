@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './Credit.css'; // Import the new CSS file
+import Header from "./Header";
 
 function Credit() {
   const [users, setUsers] = useState([]);
@@ -25,6 +26,9 @@ function Credit() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
+    <>
+    <Header/>
+    
     <div className="credit-container">
       <h2>Credit Page</h2>
       <div className="user-list">
@@ -45,6 +49,7 @@ function Credit() {
         ))}
       </div>
     </div>
+    </>
   );
 }
 
