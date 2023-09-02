@@ -1,0 +1,49 @@
+.new-transfer-container {
+    width: 80%;
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .new-transfer-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .new-transfer-container div {
+    margin: 10px 0;
+  }
+  
+  .new-transfer-container label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .new-transfer-container input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
